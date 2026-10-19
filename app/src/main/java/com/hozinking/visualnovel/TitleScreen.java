@@ -56,6 +56,7 @@ public class TitleScreen implements Screen, InputProcessor {
             }
         }
         buildButtons();
+        game.requestOrientation(false); // judul & mode klasik = landscape
         Gdx.input.setInputProcessor(this);
         Gdx.input.setCatchKey(Input.Keys.BACK, false);
         game.audio.bgm("studio_pad");
@@ -64,16 +65,36 @@ public class TitleScreen implements Screen, InputProcessor {
     private void buildButtons() {
         btnRects.clear(); btnLabels.clear(); btnActions.clear();
         addBtn("Mulai dari Awal", new Runnable() {
-            @Override public void run() { game.audio.sfx("beep"); game.storyScreen.startNew(); game.setScreen(game.storyScreen); }
+            @Override public void run() { launchStory(true); }
         });
         if (game.save.hasSave()) {
             addBtn("Lanjutkan", new Runnable() {
-                @Override public void run() { game.audio.sfx("beep"); game.storyScreen.startFromSave(); game.setScreen(game.storyScreen); }
+                @Override public void run() { launchStory(false); }
             });
         }
         addBtn("Galeri Ending", new Runnable() {
             @Override public void run() { game.audio.sfx("beep"); game.setScreen(game.galleryScreen); }
         });
+        final String cur = game.save.getMode();
+        addBtn("Mode: " + ("chat".equals(cur) ? "Chat" : "Klasik"), new Runnable() {
+            @Override public void run() {
+                game.audio.sfx("beep");
+                game.save.setMode("chat".equals(game.save.getMode()) ? "klasik" : "chat");
+                buildButtons();
+            }
+        });
+    }
+
+    /** Buka screen cerita sesuai mode yang dipilih (Klasik/Chat). */
+    private void launchStory(boolean fresh) {
+        game.audio.sfx("beep");
+        if ("chat".equals(game.save.getMode())) {
+            if (fresh) game.chatScreen.startNew(); else game.chatScreen.startFromSave();
+            game.setScreen(game.chatScreen);
+        } else {
+            if (fresh) game.storyScreen.startNew(); else game.storyScreen.startFromSave();
+            game.setScreen(game.storyScreen);
+        }
     }
 
     private void addBtn(String label, Runnable action) {

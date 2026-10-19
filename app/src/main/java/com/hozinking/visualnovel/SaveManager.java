@@ -62,6 +62,16 @@ public class SaveManager {
         prefs.flush();
     }
 
+    /** Mode tampilan: "klasik" (default) atau "chat". */
+    public String getMode() {
+        return prefs.getString("vn_mode", "klasik");
+    }
+
+    public void setMode(String mode) {
+        prefs.putString("vn_mode", mode);
+        prefs.flush();
+    }
+
     /** Ending yang sudah terbuka (id). */
     public Set<String> loadEndings() {
         Set<String> set = new HashSet<>();

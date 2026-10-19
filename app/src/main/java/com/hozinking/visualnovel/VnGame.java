@@ -15,6 +15,7 @@ public class VnGame extends Game {
     public final Map<String, BitmapFont> fonts = new HashMap<>();
     public TitleScreen titleScreen;
     public StoryScreen storyScreen;
+    public ChatScreen chatScreen;
     public GalleryScreen galleryScreen;
 
     /** Daftar ending untuk galeri: id -> judul (tanpa spoiler di luar judul). */
@@ -33,8 +34,20 @@ public class VnGame extends Game {
         loadFonts();
         titleScreen = new TitleScreen(this);
         storyScreen = new StoryScreen(this);
+        chatScreen = new ChatScreen(this);
         galleryScreen = new GalleryScreen(this);
         setScreen(titleScreen);
+    }
+
+    /** Minta orientasi layar per screen (aman di non-Android: diabaikan). */
+    public void requestOrientation(boolean portrait) {
+        try {
+            android.app.Activity act = (android.app.Activity) Gdx.app;
+            act.setRequestedOrientation(portrait
+                    ? android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                    : android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } catch (Exception ignored) {
+        }
     }
 
     private void loadFonts() {

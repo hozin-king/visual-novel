@@ -18,10 +18,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Layar utama novel visual: background + portrait + dialogue box typewriter + pilihan.
@@ -63,17 +61,9 @@ public class StoryScreen implements Screen, InputProcessor {
     private float bgFade = 1f;
     private float tintR = 1f, tintG = 1f, tintB = 1f;
 
-    // Portrait
-    private final Map<String, Texture> portraitCache = new HashMap<>();
+    // Portrait (dimuat via Portraits: crop deterministik di level Pixmap)
     private Texture portraitTex;
     private String portraitKey = "";
-    private static final Set<String> HAS_PORTRAIT = new HashSet<>();
-    static {
-        HAS_PORTRAIT.add("bagas");
-        HAS_PORTRAIT.add("darmono");
-        HAS_PORTRAIT.add("nadia");
-        HAS_PORTRAIT.add("sinta");
-    }
 
     // Tombol MENU
     private final float menuBX = 1150f, menuBY = 662f, menuBW = 100f, menuBH = 44f;
@@ -95,6 +85,7 @@ public class StoryScreen implements Screen, InputProcessor {
         batch = new SpriteBatch();
         shapes = new ShapeRenderer();
         ensureScript();
+        game.requestOrientation(false); // mode klasik = landscape
         Gdx.input.setInputProcessor(this);
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
     }
@@ -254,36 +245,10 @@ public class StoryScreen implements Screen, InputProcessor {
         String key = "";
         if (curSpeaker != null && !curSpeaker.isEmpty()) {
             String first = curSpeaker.split(" ")[0].toLowerCase();
-            if (HAS_PORTRAIT.contains(first)) key = first;
+            if (Portraits.has(first)) key = first;
         }
-        if (!key.equals(portraitKey)) {
-            portraitKey = key;
-            portraitTex = null;
-        }
-        if (!portraitKey.isEmpty()) {
-            String expr = (curExpr != null && !curExpr.isEmpty()) ? curExpr : "normal";
-            String path = "portrait/" + portraitKey + "_" + expr + ".jpg";
-            Texture t = portraitCache.get(path);
-            if (t == null && !portraitCache.containsKey(path)) {
-                try {
-                    if (Gdx.files.internal(path).exists()) {
-                        t = new Texture(Gdx.files.internal(path));
-                    } else {
-                        // Fallback: ekspresi normal bila file ekspresi tak ada
-                        String fb = "portrait/" + portraitKey + "_normal.jpg";
-                        t = portraitCache.get(fb);
-                        if (t == null && !portraitCache.containsKey(fb)) {
-                            t = new Texture(Gdx.files.internal(fb));
-                            portraitCache.put(fb, t);
-                        }
-                    }
-                    portraitCache.put(path, t);
-                } catch (Exception e) {
-                    portraitCache.put(path, null);
-                }
-            }
-            portraitTex = t;
-        }
+        portraitKey = key;
+        portraitTex = key.isEmpty() ? null : Portraits.get(key, curExpr);
     }
 
     // ------------------------------------------------------------ render
@@ -340,15 +305,10 @@ public class StoryScreen implements Screen, InputProcessor {
 
     private void drawPortrait() {
         if (portraitTex == null || showEnding) return;
+        // Texture sudah di-crop 3:4 oleh Portraits: gambar penuh, overload sederhana.
         float x = 70f, y = 250f, w = 330f, h = 440f;
-        float tw = portraitTex.getWidth(), th = portraitTex.getHeight();
-        float targetRatio = w / h;
-        float srcW = tw, srcH = tw / targetRatio;
-        if (srcH > th) { srcH = th; srcW = th * targetRatio; }
-        float srcX = (tw - srcW) / 2f;
-        float srcY = th - srcH; // bias ke atas (wajah)
         batch.setColor(tintR, tintG, tintB, 1f);
-        batch.draw(portraitTex, x, y, w, h, (int) srcX, (int) srcY, (int) srcW, (int) srcH, false, false);
+        batch.draw(portraitTex, x, y, w, h);
         batch.setColor(Color.WHITE);
     }
 
@@ -584,7 +544,6 @@ public class StoryScreen implements Screen, InputProcessor {
     @Override
     public void dispose() {
         for (Texture t : bgCache.values()) t.dispose();
-        for (Texture t : portraitCache.values()) if (t != null) t.dispose();
         if (batch != null) batch.dispose();
         if (shapes != null) shapes.dispose();
     }

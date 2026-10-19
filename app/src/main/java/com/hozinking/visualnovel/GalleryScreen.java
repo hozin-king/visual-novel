@@ -43,6 +43,7 @@ public class GalleryScreen implements Screen, InputProcessor {
         if (shapes != null) shapes.dispose();
         batch = new SpriteBatch();
         shapes = new ShapeRenderer();
+        game.requestOrientation(false); // galeri = landscape
         Gdx.input.setInputProcessor(this);
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
     }
