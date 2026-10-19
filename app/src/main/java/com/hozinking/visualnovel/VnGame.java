@@ -59,12 +59,14 @@ public class VnGame extends Game {
             fonts.put("choice", gen.generateFont(param(30)));
             fonts.put("ui", gen.generateFont(param(26)));
             fonts.put("small", gen.generateFont(param(22)));
+            fonts.put("tiny", gen.generateFont(param(18)));
             gen.dispose();
         } catch (Exception e) {
             // Fallback: font default bila TTF gagal dimuat
             BitmapFont def = new BitmapFont();
             fonts.put("title", def); fonts.put("dialog", def); fonts.put("speaker", def);
             fonts.put("choice", def); fonts.put("ui", def); fonts.put("small", def);
+            fonts.put("tiny", def);
         }
     }
 

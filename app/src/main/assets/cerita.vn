@@ -24,6 +24,9 @@ Yoga (WA): "Mas Bagas, besok pagi saya mampir ke studio. Bawa surat pernyataan p
 Bagas: "..."
 *Saya menatap lampu ON AIR. Merah. Tenang. Tidak tahu apa-apa.*
 Bagas[tegang]: "Pendengar... saya baru dapat kabar. Mungkin ini malam terakhir kita."
+*Di samping mixer ada buku request — tulis tangan pendengar, sudah tiga jilid. Semalam penuh. Malam ini halamannya masih kosong.*
+Bagas[sedih]: "Biasanya jam segini sudah ada yang minta lagu. Malam ini... sepi."
+*Saya membuka halaman terakhir jilid ketiga. Tulisan anak kecil, miring: "Om Bagas, puterin lagu buat Bapak yang lagi ronda ya."*
 choice:
   - "Beri tahu pendengar apa adanya" -> prolog_terbuka [set: terbuka=1]
   - "Simpan sendiri. Siaran tetap jalan seperti biasa" -> prolog_tutup [set: terbuka=0]
@@ -35,6 +38,7 @@ jump: tlp_darmono
 
 label: prolog_tutup
 Bagas: "Tidak jadi. Lupakan. Malam ini milik kita seperti biasa — lagu, telepon, dan hujan."
+Bagas[tegang]: "Malam ini kita pura-pura semuanya baik-baik saja. Saya sudah delapan tahun jago soal itu."
 *Saya mengunci ponsel, layarnya menghadap ke bawah. Ada hal-hal yang lebih gampang dibawa sendirian. Katanya.*
 jump: tlp_darmono
 
@@ -62,6 +66,10 @@ Darmono[terharu]: "Maturnuwun, Le. Kamu itu... ya sudah kayak anak sendiri."
 *Saya menelan ludah. Di kaca jendela, pantulan saya mengangguk.*
 Bagas: "Nanti habis siaran saya mampir, Pak. Bawain pisang goreng Bu Tin."
 Darmono[terharu]: "Tenane, Le? Ya Allah... ya sudah, tak tunggu. Tak tunggu tenan."
+Darmono: "Le, becak saya itu sudah dua puluh tahun. Dulu yang naik anak-anak sekolah, sekarang yang naik cuma kenangan."
+Bagas[terharu]: "Becaknya mogok, tapi yang dorong Ibu. Romantis juga, Pak."
+Darmono[senang]: "Hehehe. Makanya saya nggak marah dia ngomel. Ngomel itu tandanya masih peduli, Le. Kalau sudah diam... nah itu yang bahaya."
+*Saya mencatat kalimat itu bukan di buku request — di tempat yang lebih dalam.*
 set: dukungan+1
 jump: yoga_datang
 
@@ -98,6 +106,11 @@ Yoga: "Saya tahu. Makanya saya datang sendiri, bukan lewat pengacara. Sebagai...
 Bagas: "Kalau saya tidak tanda tangan?"
 Yoga: "Frekuensinya tetap pindah, Mas. Cuma caranya jadi tidak enak. Pemutusan sepihak."
 *Pena tergeletak di atas map. Menunggu.*
+Yoga: "Mas tahu nggak? Saya yang usul ke Bapak untuk jual ke jaringan itu."
+Bagas[terkejut]: "...Kamu?"
+Yoga: "Bapak nombok tiga tahun, Mas. Tabungannya habis. Saya tidak tega lihat beliau jual tanah satu per satu cuma biar 107.8 tetap nyala."
+*Dia menatap map cokelat itu seperti menatap kesalahannya sendiri.*
+Yoga: "Saya benci jadi orang yang bawa surat ini. Tapi saya lebih benci lihat Bapak bangkrut."
 choice:
   - "Tolak. Saya tidak akan tanda tangan" -> yoga_tolak [set: yoga=0]
   - "Tanda tangani. Sudah waktunya selesai" -> yoga_tanda [set: yoga=1]
@@ -139,6 +152,8 @@ Nadia[cemas]: "Tadi sore, saya lihat sesuatu. Dokter senior... salah kasih dosis
 *Saya menegakkan badan.*
 Nadia[cemas]: "Saya satu-satunya yang lihat. Kalau saya lapor, karir saya... saya baru dua tahun, Mas. Kontrak. Tapi kalau saya diam dan bapak itu kenapa-kenapa, saya tidak akan bisa tidur."
 *Napasnya pendek-pendek. Saya dengar dia menahan tangis.*
+Nadia[cemas]: "Ibu saya jual sawah biar saya bisa sekolah perawat, Mas. Kalau kontrak saya putus... saya tidak tahu mau bilang apa ke beliau."
+*Suaranya makin kecil. Saya dengar dia mengusap hidung dengan lengan baju.*
 Bagas[tegang]: "Nadia. Dengerin saya."
 choice:
   - "Laporkan. Kebenaran lebih penting dari karir" -> nadia_lapor [set: nadia=0]
@@ -188,6 +203,9 @@ Sinta[sedih]: "Saya dengar soal frekuensinya, Gas. Dari Yoga. Maaf... saya tahu 
 Bagas: "Kabar buruk jalannya cepat ya."
 Sinta: "Kamu ingat nggak, malam pertama kamu siaran? Saya yang nemenin. Bapakmu yang nyetel mixernya."
 *Dan begitu saja, delapan tahun terlipat.*
+Sinta[sedih]: "Delapan tahun lalu saya dapat beasiswa ke Surabaya, Gas. Saya pergi tanpa pamit baik-baik karena... kalau saya pamit, saya tahu saya tidak akan jadi pergi."
+Bagas: "Dan sekarang?"
+Sinta: "Sekarang saya pulang. Telat delapan tahun, tapi pulang."
 jump: kilas_balik
 
 label: kilas_balik
@@ -203,6 +221,8 @@ Pak Harno: "Ya salah. Besok benerin. Radio itu bukan museum, Le."
 Sinta: "Nanti kalau kamu terkenal, saya mau jadi manajernya. Gaji minta gede."
 Bagas[senang]: "Nanti kalau saya terkenal, kamu yang pertama saya pecat."
 *Tawa kami memenuhi studio kecil itu. Di luar, becak lewat. Dunia belum meminta apa-apa dari kami.*
+*Bapak selalu mengetuk mixer dua kali sebelum ON AIR. Katanya biar mesinnya ingat siapa tuannya.*
+Pak Harno: "Le, radio itu kayak becak. Yang penting bukan mesinnya — yang penting ada yang mau dengerin ceritamu."
 jump: kembali_sinta
 
 label: kembali_sinta
@@ -248,6 +268,9 @@ sfx: static
 *Delapan tahun. Baru kali ini saya mendengar studio sepi ini.*
 Bagas[tegang]: "Mixer masih hidup. Mikrofon masih hidup. Yang mati cuma... jalannya ke menara."
 *Saya bisa beralih ke cadangan — kabel telepon langsung ke pemancar, kualitas seadanya, tapi jalan. Atau... berhenti. Mungkin memang waktunya berhenti.*
+*Saya menyentuh tombol ON AIR. Masih hangat.*
+Bagas[sedih]: "Delapan tahun, Pak. Kalau Bapak masih ada, Bapak bakal bilang apa ya?"
+*Petir menyambar lagi. Seolah menjawab.*
 choice:
   - "Tetap siaran. Pakai jalur cadangan, apa pun kualitasnya" -> badai_terus [set: badai=0]
   - "Akhiri di sini. Pamitan yang baik-baik" -> badai_berhenti [set: badai=1]
@@ -303,6 +326,9 @@ Nadia[sedih]: "Mas... pasiennya meninggal. Tadi. Jam satu."
 Nadia[sedih]: "Saya... saya cuma berdiri di sana. Saya tahu dosisnya salah dan saya diam saja."
 Bagas[sedih]: "Nadia—"
 Nadia[sedih]: "Jangan bilang bukan salah saya, Mas. Kumohon."
+Bagas[sedih]: "Nadia, saya... saya tidak tahu harus bilang apa."
+Nadia[sedih]: "Tidak usah bilang apa-apa, Mas. Temani saya di telepon sebentar saja. Sampai giliran jaga saya selesai."
+*Saya tidak memutus. Kami diam bersama — dua orang asing yang dipertemukan hujan dan penyesalan.*
 jump: nadia_tanggung
 
 label: nadia_tanggung
@@ -381,6 +407,10 @@ bgm: fajar_pad
 Yoga: "Saya... akan bicara dengan Bapak."
 *Fajar mulai naik di balik menara. Lampu merah puncaknya... menyala lagi.*
 Bagas[senang]: "Selamat pagi, Kota Arum. Ini Lentera Malam. Dan kita... masih di sini."
+*Telepon berdering. Bukan line studio — ponsel saya. Nomor tak dikenal.*
+Darmono: "Le! Istri saya bangun! Dokternya bilang boleh pulang besok! Katanya gara-gara dengar suaramu di radio koridor!"
+Bagas[terharu]: "Ya Allah... syukur, Pak. Syukur."
+*Saya tertawa sampai mata basah. Di luar, fajar naik penuh.*
 ending: lentera_menyala "Lentera Tetap Menyala"
 
 label: end_perpisahan
@@ -408,4 +438,5 @@ Bagas[sedih]: "Pendengar, malam ini Lentera Malam pamit. Bukan karena kita kalah
 Bagas: "Saya Bagas Pramudya. Delapan tahun di 107.8. Terima kasih."
 *Saya berdiri, mematikan lampu ON AIR dengan tangan sendiri. Merah padam.*
 *Di meja, saya tinggalkan satu benda: obeng bapak. Biar studio ini ingat siapa yang membangunnya.*
+Bagas: "Makasih ya, Pak. Sudah dipinjam suaranya delapan tahun."
 ending: tanda_tangan "Tanda Tangan"

@@ -62,9 +62,9 @@ public class SaveManager {
         prefs.flush();
     }
 
-    /** Mode tampilan: "klasik" (default) atau "chat". */
+    /** Mode tampilan: "chat" (default sejak v1.4) atau "klasik". */
     public String getMode() {
-        return prefs.getString("vn_mode", "klasik");
+        return prefs.getString("vn_mode", "chat");
     }
 
     public void setMode(String mode) {
