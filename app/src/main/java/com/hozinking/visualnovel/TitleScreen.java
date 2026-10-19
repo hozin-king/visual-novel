@@ -45,7 +45,7 @@ public class TitleScreen implements Screen, InputProcessor {
         shapes = new ShapeRenderer();
         if (bg == null) {
             try {
-                bg = new Texture(Gdx.files.internal("bg/studio_malam.png"));
+                bg = new Texture(Gdx.files.internal("bg/studio_malam.jpg"));
             } catch (Exception ignored) {
             }
         }

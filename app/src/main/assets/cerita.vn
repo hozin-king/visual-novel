@@ -1,13 +1,13 @@
 # LENTERA MALAM
 # Format:
-#   label: nama | bg: file.png | style: normal|memory|crisis | bgm: track | sfx: suara
+#   label: nama | bg: file.jpg | style: normal|memory|crisis | bgm: track | sfx: suara
 #   Nama[ekspresi]: "dialog..."   (*...* = narasi, tanpa pembicara)
 #   choice:  - "opsi" -> label [set: f=1] [if: g=0]
 #   jump: label | set: f=1 / f+1 | if: f=1 -> a | else -> b
 #   ending: id "Judul"
 
 label: prolog
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 *Jam sebelas lewat sepuluh, dan hujan belum juga reda.*
@@ -82,7 +82,7 @@ Bagas[sedih]: "..."
 jump: yoga_datang
 
 label: yoga_datang
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 *Jam sebelas empat puluh. Ketukan di kaca studio.*
@@ -125,7 +125,7 @@ Yoga: "Jaga diri, Mas." [if: terbuka=0]
 jump: tlp_nadia
 
 label: tlp_nadia
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 sfx: telpon
@@ -170,7 +170,7 @@ Bagas: "Pintar. Hati-hati, ya."
 jump: tlp_sinta
 
 label: tlp_sinta
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 sfx: telpon
@@ -191,7 +191,7 @@ Sinta: "Kamu ingat nggak, malam pertama kamu siaran? Saya yang nemenin. Bapakmu 
 jump: kilas_balik
 
 label: kilas_balik
-bg: studio_dulu.png
+bg: studio_dulu.jpg
 style: memory
 bgm: fajar_pad
 *Studio yang sama, delapan tahun lalu. Siang hari. Debu menari di cahaya jendela.*
@@ -206,7 +206,7 @@ Bagas[senang]: "Nanti kalau saya terkenal, kamu yang pertama saya pecat."
 jump: kembali_sinta
 
 label: kembali_sinta
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 Sinta[sedih]: "Bapakmu bangga, Gas. Kamu tahu itu kan?"
@@ -236,7 +236,7 @@ Bagas[sedih]: "Maaf."
 jump: badai
 
 label: badai
-bg: menara_hujan.png
+bg: menara_hujan.jpg
 style: crisis
 bgm: tegang
 sfx: petir
@@ -268,7 +268,7 @@ Bagas[sedih]: "Terima kasih untuk delapan tahunnya. Saya... pamit."
 jump: nadia_kembali
 
 label: nadia_kembali
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 sfx: telpon
@@ -327,7 +327,7 @@ Nadia[sedih]: "Iya, Mas. Saya tahu."
 jump: final
 
 label: final
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 *Jam dua kurang sepuluh. Sembilan puluh menit tinggal sepuluh.*
@@ -335,7 +335,7 @@ bgm: studio_pad
 if: nadia=1 -> final_gelap | else -> final_biasa
 
 label: final_gelap
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: crisis
 bgm: tegang
 *Saya menatap lampu ON AIR. Merah. Seperti mata yang tidak berkedip.*
@@ -369,7 +369,7 @@ sfx: telpon
 jump: end_menyala
 
 label: end_menyala
-bg: fajar.png
+bg: fajar.jpg
 style: normal
 bgm: fajar_pad
 *Jam tiga pagi. Pintu studio diketuk — bukan, digedor.*
@@ -384,7 +384,7 @@ Bagas[senang]: "Selamat pagi, Kota Arum. Ini Lentera Malam. Dan kita... masih di
 ending: lentera_menyala "Lentera Tetap Menyala"
 
 label: end_perpisahan
-bg: fajar.png
+bg: fajar.jpg
 style: normal
 bgm: fajar_pad
 Bagas[sedih]: "Saya tidak akan meminta kalian berjuang. Delapan tahun cukup untuk tahu kapan harus melepas."
@@ -397,7 +397,7 @@ Bagas[sedih]: "Terima kasih sudah begadang bersama saya. Jaga kota ini baik-baik
 ending: siaran_perpisahan "Siaran Perpisahan"
 
 label: final_tanda
-bg: studio_malam.png
+bg: studio_malam.jpg
 style: normal
 bgm: studio_pad
 *Suratnya sudah saya tanda tangani. Tidak ada lagi yang perlu diperjuangkan — tinggal diakhiri dengan baik.*

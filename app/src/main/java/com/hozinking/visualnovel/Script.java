@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * Parser untuk format naskah .vn:
  *   label: nama
- *   bg: file.png | style: normal|memory|crisis | bgm: track | sfx: suara
+ *   bg: file.jpg | style: normal|memory|crisis | bgm: track | sfx: suara
  *   Nama[ekspresi]: "dialog..."   |   *narasi...*
  *   choice:
  *     - "opsi" -> label [set: f=1] [if: g>=3]

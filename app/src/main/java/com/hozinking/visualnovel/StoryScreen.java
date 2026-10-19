@@ -246,7 +246,7 @@ public class StoryScreen implements Screen, InputProcessor {
         }
         if (!portraitKey.isEmpty()) {
             String expr = (curExpr != null && !curExpr.isEmpty()) ? curExpr : "normal";
-            String path = "portrait/" + portraitKey + "_" + expr + ".png";
+            String path = "portrait/" + portraitKey + "_" + expr + ".jpg";
             Texture t = portraitCache.get(path);
             if (t == null && !portraitCache.containsKey(path)) {
                 try {
@@ -254,7 +254,7 @@ public class StoryScreen implements Screen, InputProcessor {
                         t = new Texture(Gdx.files.internal(path));
                     } else {
                         // Fallback: ekspresi normal bila file ekspresi tak ada
-                        String fb = "portrait/" + portraitKey + "_normal.png";
+                        String fb = "portrait/" + portraitKey + "_normal.jpg";
                         t = portraitCache.get(fb);
                         if (t == null && !portraitCache.containsKey(fb)) {
                             t = new Texture(Gdx.files.internal(fb));
