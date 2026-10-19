@@ -188,6 +188,7 @@ Sinta[sedih]: "Saya dengar soal frekuensinya, Gas. Dari Yoga. Maaf... saya tahu 
 Bagas: "Kabar buruk jalannya cepat ya."
 Sinta: "Kamu ingat nggak, malam pertama kamu siaran? Saya yang nemenin. Bapakmu yang nyetel mixernya."
 *Dan begitu saja, delapan tahun terlipat.*
+jump: kilas_balik
 
 label: kilas_balik
 bg: studio_dulu.png
@@ -202,6 +203,7 @@ Pak Harno: "Ya salah. Besok benerin. Radio itu bukan museum, Le."
 Sinta: "Nanti kalau kamu terkenal, saya mau jadi manajernya. Gaji minta gede."
 Bagas[senang]: "Nanti kalau saya terkenal, kamu yang pertama saya pecat."
 *Tawa kami memenuhi studio kecil itu. Di luar, becak lewat. Dunia belum meminta apa-apa dari kami.*
+jump: kembali_sinta
 
 label: kembali_sinta
 bg: studio_malam.png
