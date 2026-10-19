@@ -52,7 +52,7 @@ public class GalleryScreen implements Screen, InputProcessor {
         Set<String> unlocked = game.save.loadEndings();
         batch.begin();
         layout.setText(game.font("title"), "GALERI ENDING");
-        game.font("title").setColor(0.95f, 0.85f, 0.6f);
+        game.font("title").setColor(0.95f, 0.85f, 0.6f, 1f);
         game.font("title").draw(batch, "GALERI ENDING", (W - layout.width) / 2f, 600f);
         game.font("title").setColor(Color.WHITE);
         layout.setText(game.font("ui"), unlocked.size() + " dari " + VnGame.ENDINGS.length + " terbuka");
@@ -80,8 +80,8 @@ public class GalleryScreen implements Screen, InputProcessor {
             batch.begin();
             String label = open ? title : "???";
             layout.setText(game.font("choice"), label);
-            if (open) game.font("choice").setColor(1f, 0.93f, 0.75f);
-            else game.font("choice").setColor(0.45f, 0.45f, 0.47f);
+            if (open) game.font("choice").setColor(1f, 0.93f, 0.75f, 1f);
+            else game.font("choice").setColor(0.45f, 0.45f, 0.47f, 1f);
             game.font("choice").draw(batch, label, 280f, by - 12f);
             game.font("choice").setColor(Color.WHITE);
             batch.end();

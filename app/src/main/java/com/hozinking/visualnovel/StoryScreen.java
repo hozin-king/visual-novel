@@ -374,7 +374,7 @@ public class StoryScreen implements Screen, InputProcessor {
             shapes.rect(60f, 218f, pw, 46f);
             shapes.end();
             batch.begin();
-            game.font("speaker").setColor(0.12f, 0.1f, 0.08f);
+            game.font("speaker").setColor(0.12f, 0.1f, 0.08f, 1f);
             game.font("speaker").draw(batch, curSpeaker, 82f, 252f);
             game.font("speaker").setColor(Color.WHITE);
         }
@@ -432,7 +432,7 @@ public class StoryScreen implements Screen, InputProcessor {
             batch.begin();
             List<String> lines = wrap(o.text, game.font("choice"), bw - 50f);
             float ty = by + bh / 2f + (lines.size() - 1) * 19f;
-            game.font("choice").setColor(1f, 0.96f, 0.88f);
+            game.font("choice").setColor(1f, 0.96f, 0.88f, 1f);
             for (String ln : lines) {
                 layout.setText(game.font("choice"), ln);
                 game.font("choice").draw(batch, ln, bx + (bw - layout.width) / 2f, ty);
@@ -451,7 +451,7 @@ public class StoryScreen implements Screen, InputProcessor {
         shapes.end();
         batch.begin();
         layout.setText(game.font("ui"), "— TAMAT —");
-        game.font("ui").setColor(0.85f, 0.7f, 0.35f);
+        game.font("ui").setColor(0.85f, 0.7f, 0.35f, 1f);
         game.font("ui").draw(batch, "— TAMAT —", (W - layout.width) / 2f, 420f);
         List<String> lines = wrap(endingTitle, game.font("title"), 1000f);
         float ty = 330f;

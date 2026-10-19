@@ -104,7 +104,7 @@ public class TitleScreen implements Screen, InputProcessor {
 
         batch.begin();
         layout.setText(game.font("title"), "LENTERA MALAM");
-        game.font("title").setColor(0.95f, 0.85f, 0.6f);
+        game.font("title").setColor(0.95f, 0.85f, 0.6f, 1f);
         game.font("title").draw(batch, "LENTERA MALAM", (W - layout.width) / 2f, 560f);
         layout.setText(game.font("ui"), "sebuah novel visual");
         game.font("ui").setColor(1f, 1f, 1f, 0.7f);
@@ -124,7 +124,7 @@ public class TitleScreen implements Screen, InputProcessor {
             shapes.end();
             batch.begin();
             layout.setText(game.font("choice"), btnLabels.get(i));
-            game.font("choice").setColor(1f, 0.96f, 0.88f);
+            game.font("choice").setColor(1f, 0.96f, 0.88f, 1f);
             game.font("choice").draw(batch, btnLabels.get(i), r[0] + (r[2] - layout.width) / 2f, r[1] + 50f);
             game.font("choice").setColor(Color.WHITE);
             batch.end();
