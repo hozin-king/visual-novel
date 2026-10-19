@@ -1,0 +1,409 @@
+# LENTERA MALAM
+# Format:
+#   label: nama | bg: file.png | style: normal|memory|crisis | bgm: track | sfx: suara
+#   Nama[ekspresi]: "dialog..."   (*...* = narasi, tanpa pembicara)
+#   choice:  - "opsi" -> label [set: f=1] [if: g=0]
+#   jump: label | set: f=1 / f+1 | if: f=1 -> a | else -> b
+#   ending: id "Judul"
+
+label: prolog
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+*Jam sebelas lewat sepuluh, dan hujan belum juga reda.*
+*Dari jendela studio, lampu-lampu Ruko Sadewa tampak berpendar redup di balik tirai air. Di dalam hanya ada dengung pendingin ruangan, bau kopi sachet, dan lampu merah kecil di atas pintu: ON AIR.*
+sfx: jingle
+Bagas: "Selamat malam, Kota Arum. Ini Lentera Malam, sembilan puluh menit ke depan bareng saya, Bagas, di 107.8 Larasati FM."
+Bagas[senang]: "Buat yang masih di jalan, hati-hati, jalannya licin. Buat yang sudah di kasur... iri saya, terus terang."
+*Meja mixer di depan saya sudah berumur dua belas tahun. Slider volumenya bunyi kresek kalau digeser terlalu cepat. Tapi malam ini dia nurut. Mungkin dia juga tahu.*
+sfx: wa
+*Ponsel di samping mixer menyala. Pesan dari Yoga.*
+Yoga (WA): "Mas Bagas, besok pagi saya mampir ke studio. Bawa surat pernyataan penutupan. Tolong dibaca dulu malam ini."
+*Surat pernyataan penutupan.*
+*Bahasa halusnya: Larasati FM dijual. Frekuensi 107.8 pindah ke jaringan dangdut ibu kota. Dan Lentera Malam — acara yang saya bawakan delapan tahun — tamat malam ini juga.*
+Bagas: "..."
+*Saya menatap lampu ON AIR. Merah. Tenang. Tidak tahu apa-apa.*
+Bagas[tegang]: "Pendengar... saya baru dapat kabar. Mungkin ini malam terakhir kita."
+choice:
+  - "Beri tahu pendengar apa adanya" -> prolog_terbuka [set: terbuka=1]
+  - "Simpan sendiri. Siaran tetap jalan seperti biasa" -> prolog_tutup [set: terbuka=0]
+
+label: prolog_terbuka
+Bagas[sedih]: "Manajemen memutuskan menjual frekuensi ini. Besok pagi saya tanda tangan suratnya — atau tidak. Saya belum tahu. Yang saya tahu, sembilan puluh menit ini milik kita."
+*Jari saya gemetar waktu menggeser slider. Kresek. Tidak apa. Biar.*
+jump: tlp_darmono
+
+label: prolog_tutup
+Bagas: "Tidak jadi. Lupakan. Malam ini milik kita seperti biasa — lagu, telepon, dan hujan."
+*Saya mengunci ponsel, layarnya menghadap ke bawah. Ada hal-hal yang lebih gampang dibawa sendirian. Katanya.*
+jump: tlp_darmono
+
+label: tlp_darmono
+sfx: telpon
+*Telepon masuk. Lampu LINE 1 berkedip. Pasti dia.*
+Bagas: "Lentera Malam, halo?"
+Darmono: "Halo! Mas Bagas! Darmono ini, Le!"
+Bagas[senang]: "Pak Darmono. Jam segini belum tidur juga?"
+Darmono: "Lha wong di rumah sakit ini, Le. Mana bisa tidur. Kursi tunggunya keras kayak bangku SD."
+*Koridor RSUD. Saya bisa membayangkannya: Pak Darmono duduk di kursi plastik hijau, ponsel ditempel ke telinga, di ujung koridor ada mesin minuman yang bunyinya dengung.*
+Bagas: "Ibu... gimana, Pak?"
+Darmono[sedih]: "Ya begitu, Le. Dokternya bilang tunggu sampai pagi. Saya ya nunggu. Sambil dengerin kamu, lumayan."
+*Delapan tahun saya siaran, Pak Darmono tidak pernah absen menelepon. Sekali. Hujan, lebaran, bahkan waktu listrik mati sekota — dia telepon dari wartel.*
+choice:
+  - "Ngobrol dulu, temani sampai tenang" -> darmono_hangat [set: darmono=2]
+  - "Putarkan lagu keroncong kesukaannya" -> darmono_lagu [set: darmono=1]
+  - "Minta maaf, harus lanjut ke segmen berikut" -> darmono_dingin [set: darmono=0]
+
+label: darmono_hangat
+Bagas: "Pak, ceritain. Ibu tadi sempat ngobrol apa?"
+Darmono[terharu]: "Hehehe... dia ngomel, Le. Katanya becak saya kemarin mogok di tanjakan, malu-maluin. Padahal yang dorong dia."
+Bagas[senang]: "Tuh kan. Ibu sehat-sehat aja orang masih sempat ngomel."
+Darmono[terharu]: "Maturnuwun, Le. Kamu itu... ya sudah kayak anak sendiri."
+*Saya menelan ludah. Di kaca jendela, pantulan saya mengangguk.*
+Bagas: "Nanti habis siaran saya mampir, Pak. Bawain pisang goreng Bu Tin."
+Darmono[terharu]: "Tenane, Le? Ya Allah... ya sudah, tak tunggu. Tak tunggu tenan."
+set: dukungan+1
+jump: yoga_datang
+
+label: darmono_lagu
+Bagas: "Pak, saya putarkan satu lagu ya. Yang biasa."
+sfx: keroncong
+*Keroncong. Cuk dan cak berkejaran pelan. Saya membayangkan Pak Darmono memejamkan mata di kursi plastik itu.*
+Darmono[senang]: "Nah... ini. Dulu ibumu... eh, istrimu— ibumu Pak Darmono— suka lagu ini waktu masih pacaran, Le. Di alun-alun, tahun delapan tujuh."
+Bagas[senang]: "Tidur sebentar, Pak. Biar saya yang begadang."
+jump: yoga_datang
+
+label: darmono_dingin
+Bagas: "Pak, maaf banget, saya harus lanjut ke segmen berikut ya. Salam buat Ibu."
+Darmono: "Oh. Ya, ya, Le. Nggak apa. Sehat-sehat kamu."
+*Klik. Sambungan putus lebih cepat dari biasanya. Saya menatap lampu LINE 1 yang padam.*
+Bagas[sedih]: "..."
+*Ada yang mengganjal di tenggorokan. Saya meneguk kopi. Dingin.*
+jump: yoga_datang
+
+label: yoga_datang
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+*Jam sebelas empat puluh. Ketukan di kaca studio.*
+*Yoga. Jas hujan dilipat di lengan, map cokelat di tangan. Anak pemilik Larasati FM — maksud saya, calon penjualnya.*
+Bagas: "Masuk. Kita lagi off-air tiga menit."
+*Dia duduk tanpa melepas sepatu basahnya. Bunyi tetesan di lantai.*
+Yoga (WA): "Maaf, maksud saya — langsung saja, Mas. Ini suratnya."
+*Kertas. Kop surat PT Nada Persada Group. "Pernyataan kesepakatan pengakhiran siaran." Rapi. Dingin.*
+Yoga: "Angkanya bagus, Mas. Tiga kali lipat dari tawaran tahun lalu. Bapak saya... beliau sudah tidak sanggup nombok operasional."
+Bagas[tegang]: "Delapan tahun saya di sini, Yoga. Delapan tahun hujan-hujanan, lebaran, mati lampu."
+Yoga: "Saya tahu. Makanya saya datang sendiri, bukan lewat pengacara. Sebagai... teman lama."
+*Teman lama. Dulu kami main bola di lapangan belakang studio. Dulu.*
+Bagas: "Kalau saya tidak tanda tangan?"
+Yoga: "Frekuensinya tetap pindah, Mas. Cuma caranya jadi tidak enak. Pemutusan sepihak."
+*Pena tergeletak di atas map. Menunggu.*
+choice:
+  - "Tolak. Saya tidak akan tanda tangan" -> yoga_tolak [set: yoga=0]
+  - "Tanda tangani. Sudah waktunya selesai" -> yoga_tanda [set: yoga=1]
+
+label: yoga_tolak
+Bagas[tegang]: "Tidak."
+Yoga: "Mas—"
+Bagas: "Kamu boleh pindahkan frekuensinya. Tapi tidak dengan tanda tangan saya di atas kertas itu."
+*Yoga menghela napas. Bukan marah — lebih seperti... lega? Atau kasihan.*
+Yoga: "Bapak akan kecewa. Tapi... saya mengerti." [if: terbuka=1]
+Yoga: "Ya sudah. Semoga Mas tidak menyesal." [if: terbuka=0]
+*Dia berdiri, map dipegang erat. Di pintu dia berhenti.*
+Yoga: "Siaran yang bagus malam ini, Mas. Seperti biasa."
+jump: tlp_nadia
+
+label: yoga_tanda
+*Pena itu lebih berat dari kelihatannya.*
+*Tanda tangan saya — Bagas Pramudya — di bawah meterai. Selesai.*
+Bagas[sedih]: "Sudah."
+Yoga: "Terima kasih, Mas. Sungguh."
+*Dia menyodorkan tangan. Saya menjabatnya. Tangan kami sama-sama dingin.*
+Yoga: "Bapak selalu bilang, Mas Bagas itu suara kota ini." [if: terbuka=1]
+Yoga: "Jaga diri, Mas." [if: terbuka=0]
+*Pintu tertutup. Hujan terdengar lagi, seperti tidak pernah pergi.*
+jump: tlp_nadia
+
+label: tlp_nadia
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+sfx: telpon
+*Jam dua belas lewat lima. LINE 2.*
+Bagas: "Lentera Malam, halo?"
+Nadia: "Halo, Mas. Saya... Nadia. Perawat di RSUD."
+*Suaranya pelan. Di belakangnya ada bunyi troli dan pengumuman yang sayup.*
+Nadia[cemas]: "Saya telepon dari ruang jaga. Lagi istirahat. Boleh... cerita sedikit?"
+Bagas: "Silakan. Kita punya waktu."
+Nadia[cemas]: "Tadi sore, saya lihat sesuatu. Dokter senior... salah kasih dosis ke pasien lansia. Pasiennya kritis sekarang."
+*Saya menegakkan badan.*
+Nadia[cemas]: "Saya satu-satunya yang lihat. Kalau saya lapor, karir saya... saya baru dua tahun, Mas. Kontrak. Tapi kalau saya diam dan bapak itu kenapa-kenapa, saya tidak akan bisa tidur."
+*Napasnya pendek-pendek. Saya dengar dia menahan tangis.*
+Bagas[tegang]: "Nadia. Dengerin saya."
+choice:
+  - "Laporkan. Kebenaran lebih penting dari karir" -> nadia_lapor [set: nadia=0]
+  - "Diam dulu. Jangan korbankan masa depanmu" -> nadia_diam [set: nadia=1]
+  - "Jangan buru-buru. Kumpulkan bukti dulu, baru lapor" -> nadia_bukti [set: nadia=2]
+
+label: nadia_lapor
+Bagas[tegang]: "Laporkan, Nadia. Malam ini juga, ke atasan jaga. Kalau bukan kamu yang bersuara, siapa?"
+Nadia[cemas]: "Tapi kontrak saya—"
+Bagas: "Kebenaran tidak butuh kontrak. Percaya saya."
+*Hening panjang. Lalu napasnya stabil sedikit.*
+Nadia: "Baik, Mas. Baik. Saya... saya akan ke ruangan kepala jaga sekarang."
+jump: tlp_sinta
+
+label: nadia_diam
+Bagas[sedih]: "Diam dulu, Nadia. Saya tahu ini berat didengar, tapi kamu tidak wajib menghancurkan hidupmu untuk kesalahan orang lain."
+Nadia[cemas]: "Tapi pasiennya—"
+Bagas: "Bukan salahmu. Ingat itu. Bukan salahmu."
+*Dia tidak menjawab. Hanya bunyi troli lewat, jauh.*
+Nadia: "Iya, Mas. Makasih."
+jump: tlp_sinta
+
+label: nadia_bukti
+Bagas: "Jangan lapor kosong-kosongan, Nadia. Itu bunuh diri karir. Tapi juga jangan diam."
+Nadia[cemas]: "Maksudnya?"
+Bagas[tegang]: "Catat semuanya. Jam, nama obat, dosis, siapa yang lihat. Foto kalau bisa. Baru lapor — dengan bukti, kamu tidak bisa dibungkam."
+Nadia: "Saya... saya bisa. Saya catat di buku jaga saya."
+Bagas: "Pintar. Hati-hati, ya."
+jump: tlp_sinta
+
+label: tlp_sinta
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+sfx: telpon
+*Jam dua belas empat puluh. LINE 1 lagi.*
+Bagas: "Lentera Malam, halo?"
+Sinta: "Bagas."
+*Satu kata. Delapan tahun tidak terdengar, dan saya langsung tahu.*
+Bagas[terkejut]: "Sinta?"
+Sinta[senang]: "Masih ingat suara saya. Bagus. Kirain sudah budek kena headphone."
+*Saya tertawa — kaget sama diri sendiri karena masih bisa.*
+Bagas: "Kamu di mana? Terakhir dengar kamu di Surabaya."
+Sinta: "Di mobil. Di depan studio kamu, malah. Lampu kotanya... masih sama ya."
+*Saya menoleh ke jendela. Hujan. Gelap. Tidak ada mobil yang kelihatan. Tapi saya percaya dia ada di sana.*
+Sinta[sedih]: "Saya dengar soal frekuensinya, Gas. Dari Yoga. Maaf... saya tahu ini malam terakhir."
+Bagas: "Kabar buruk jalannya cepat ya."
+Sinta: "Kamu ingat nggak, malam pertama kamu siaran? Saya yang nemenin. Bapakmu yang nyetel mixernya."
+*Dan begitu saja, delapan tahun terlipat.*
+
+label: kilas_balik
+bg: studio_dulu.png
+style: memory
+bgm: fajar_pad
+*Studio yang sama, delapan tahun lalu. Siang hari. Debu menari di cahaya jendela.*
+*Pak Harno — bapak saya — membungkuk di belakang mixer, obeng di tangan. Saya, sembilan belas tahun, duduk kaku di depan mikrofon seperti mau ujian.*
+Sinta[senang]: "Napas, Gas. Mikrofonnya nggak gigit."
+Bagas: "Kalau salah ngomong gimana?"
+Pak Harno: "Ya salah. Besok benerin. Radio itu bukan museum, Le."
+*Pak Harno menepuk bahu saya. Tangannya kasar, hangat.*
+Sinta: "Nanti kalau kamu terkenal, saya mau jadi manajernya. Gaji minta gede."
+Bagas[senang]: "Nanti kalau saya terkenal, kamu yang pertama saya pecat."
+*Tawa kami memenuhi studio kecil itu. Di luar, becak lewat. Dunia belum meminta apa-apa dari kami.*
+
+label: kembali_sinta
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+Sinta[sedih]: "Bapakmu bangga, Gas. Kamu tahu itu kan?"
+*Pak Harno meninggal tiga tahun lalu. Serangan jantung, di studio ini juga, sepulang siaran. Saya yang menemukan.*
+Bagas[sedih]: "Kadang saya siaran cuma biar... rasanya dia masih di ruangan sebelah."
+Sinta: "Saya pergi delapan tahun lalu tanpa pamit baik-baik. Saya minta maaf."
+*Hujan di jendela makin deras. Atau itu perasaan saya saja.*
+choice:
+  - "Jujur soal semuanya — bapak, studio, rasa bersalah" -> sinta_jujur [set: sinta=1]
+  - "Tetap profesional. Ini acara radio, bukan curhat" -> sinta_jaga [set: sinta=0]
+
+label: sinta_jujur
+Bagas[sedih]: "Saya takut, Sin. Bukan cuma kehilangan kerjaan. Kalau frekuensi ini mati... suara bapak ikut mati. Bodoh ya?"
+Sinta[sedih]: "Tidak bodoh. Saya yang bodoh, pergi waktu kamu butuh teman."
+Bagas: "Kamu kembali malam ini. Itu cukup."
+Sinta[senang]: "Dengar, Gas. Alumni dan komunitas masih banyak yang dengerin kamu. Kalau kamu butuh orang... saya bisa gerakkan mereka."
+*Sesuatu yang hangat merambat di dada. Kecil. Tapi nyata.*
+set: dukungan+1
+jump: badai
+
+label: sinta_jaga
+Bagas: "Makasih sudah telepon, Sinta. Senang dengar kabar kamu baik-baik aja."
+Sinta: "Bagas—"
+Bagas: "Kita lanjut ke lagu ya. Tetap di Lentera Malam."
+*Klik. Saya memutus sebelum dia selesai. Tangan saya gemetar.*
+Bagas[sedih]: "Maaf."
+jump: badai
+
+label: badai
+bg: menara_hujan.png
+style: crisis
+bgm: tegang
+sfx: petir
+*Jam satu lewat dua puluh. Petir menyambar — dekat.*
+*Lampu studio berkedip. Mixer berderak. Dan dari pengeras monitor, suara saya sendiri tiba-tiba... hilang.*
+Bagas[tegang]: "Pendengar? Halo? Tes, tes—"
+sfx: static
+*Statis. Pemancar kena sambar. Di luar jendela, menara Larasati FM berdiri tegak di tengah hujan, lampu merah puncaknya padam.*
+*Delapan tahun. Baru kali ini saya mendengar studio sepi ini.*
+Bagas[tegang]: "Mixer masih hidup. Mikrofon masih hidup. Yang mati cuma... jalannya ke menara."
+*Saya bisa beralih ke cadangan — kabel telepon langsung ke pemancar, kualitas seadanya, tapi jalan. Atau... berhenti. Mungkin memang waktunya berhenti.*
+choice:
+  - "Tetap siaran. Pakai jalur cadangan, apa pun kualitasnya" -> badai_terus [set: badai=0]
+  - "Akhiri di sini. Pamitan yang baik-baik" -> badai_berhenti [set: badai=1]
+
+label: badai_terus
+*Kabel cadangan. Tangan basah. Colok.*
+sfx: beep
+Bagas[tegang]: "...Halo? Halo, Kota Arum? Ini Bagas. Kualitasnya jelek, saya tahu. Tapi saya masih di sini."
+*Statis menipis. Dan kemudian — satu per satu — lampu LINE bernyala. Satu. Dua. Lima. Semua.*
+Bagas[senang]: "Kalian masih di sana. Ya Tuhan... kalian masih di sana."
+set: dukungan+1
+jump: nadia_kembali
+
+label: badai_berhenti
+Bagas[sedih]: "Pendengar... sepertinya alam ikut memutuskan malam ini."
+*Saya menatap mixer. Dua belas tahun mengabdi. Slider kreseknya diam.*
+Bagas[sedih]: "Terima kasih untuk delapan tahunnya. Saya... pamit."
+jump: nadia_kembali
+
+label: nadia_kembali
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+sfx: telpon
+*Jam satu empat puluh. LINE 2. Lagi.*
+Bagas: "Lentera Malam, halo?"
+Nadia: "Mas Bagas... ini Nadia."
+if: nadia=2 -> nadia_hasil_bukti | else -> nadia_cek2
+
+label: nadia_cek2
+if: nadia=0 -> nadia_hasil_lapor | else -> nadia_hasil_diam
+
+label: nadia_hasil_bukti
+Nadia[lega]: "Mas... saya lakukan seperti kata Mas. Saya catat semuanya. Jam, dosis, nama obat. Saya foto lembar resepnya."
+Nadia[lega]: "Kepala jaga langsung panggil dokternya. Pasiennya... stabil sekarang, Mas. Katanya kalau telat sedikit saja—"
+*Suaranya pecah. Tapi kali ini karena lega.*
+Nadia[lega]: "Terima kasih, Mas. Saya tidak jadi kehilangan pekerjaan saya. Malah... saya dipuji berani."
+Bagas[senang]: "Itu karena kamu berani, Nadia. Bukan karena saya."
+set: dukungan+1
+jump: nadia_tanggung
+
+label: nadia_hasil_lapor
+Nadia[sedih]: "Saya sudah lapor, Mas. Seperti kata Mas."
+Bagas: "Terus?"
+Nadia[sedih]: "Dokternya... menyangkal. Tidak ada bukti, cuma omongan saya. Saya diskors sambil menunggu investigasi."
+*Dada saya sesak.*
+Nadia[sedih]: "Saya tidak menyalahkan Mas. Sungguh. Tapi... saya takut, Mas. Kontrak saya..."
+jump: nadia_tanggung
+
+label: nadia_hasil_diam
+Nadia[sedih]: "Mas... pasiennya meninggal. Tadi. Jam satu."
+*Dunia berhenti berputar sesaat.*
+Nadia[sedih]: "Saya... saya cuma berdiri di sana. Saya tahu dosisnya salah dan saya diam saja."
+Bagas[sedih]: "Nadia—"
+Nadia[sedih]: "Jangan bilang bukan salah saya, Mas. Kumohon."
+jump: nadia_tanggung
+
+label: nadia_tanggung
+choice:
+  - "Minta maaf dan bertanggung jawab atas nasihatmu" -> nadia_maaf [set: tanggung=1]
+  - "Bela diri: keputusan tetap di tangannya" -> nadia_bela [set: tanggung=0]
+
+label: nadia_maaf
+Bagas[sedih]: "Maafkan saya, Nadia. Nasihat saya... saya yang suruh, saya yang tanggung."
+Nadia: "Mas tidak perlu—"
+Bagas: "Perlu. Kalau kamu butuh saksi, nama saya Bagas Pramudya, Lentera Malam. Catat."
+*Nadia terdiam. Lalu, pelan:*
+Nadia[lega]: "Makasih, Mas." [if: nadia=2]
+Nadia[sedih]: "Makasih, Mas." [if: nadia=0]
+Nadia[sedih]: "..." [if: nadia=1]
+jump: final
+
+label: nadia_bela
+Bagas: "Nadia, dengar. Saya cuma memberi saran. Keputusan tetap di tanganmu."
+Nadia[sedih]: "Iya, Mas. Saya tahu."
+*Suaranya datar. Jarak seribu kilometer dalam satu kalimat.*
+jump: final
+
+label: final
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+*Jam dua kurang sepuluh. Sembilan puluh menit tinggal sepuluh.*
+*Hujan sudah reda. Tinggal bunyi tetesan dari talang.*
+if: nadia=1 -> final_gelap | else -> final_biasa
+
+label: final_gelap
+bg: studio_malam.png
+style: crisis
+bgm: tegang
+*Saya menatap lampu ON AIR. Merah. Seperti mata yang tidak berkedip.*
+Bagas[sedih]: "Pendengar... saya harus jujur tentang sesuatu. Tadi malam, seorang perawat menelepon saya. Dia melihat kesalahan medis. Dan saya... saya menyuruhnya diam."
+*Keheningan di seberang sana terasa seperti ruangan kosong.*
+Bagas[sedih]: "Pasiennya meninggal jam satu tadi. Saya tidak membunuhnya. Tapi saya ikut membiarkannya."
+*Nadia... maafkan saya.* [if: tanggung=1]
+*Keputusan tetap di tangannya. Itu yang saya bilang. Betapa gampangnya kalimat itu.* [if: tanggung=0]
+sfx: static
+*Lampu LINE bernyala satu per satu. Bukan untuk request lagu.*
+Bagas[sedih]: "Matikan, Yoga. Silakan."
+*Saya melepas headphone. Untuk pertama kalinya dalam delapan tahun, saya yang mematikan Lentera Malam.*
+ending: frekuensi_kosong "Frekuensi Kosong"
+
+label: final_biasa
+if: yoga=1 -> final_tanda | else -> final_lawan
+
+label: final_lawan
+*Sepuluh menit terakhir. Mixer di depan saya. Pena Yoga sudah tidak ada — saya tolak tadi.*
+Bagas[tegang]: "Pendengar... ini bagian tersulit."
+choice:
+  - "Ajak pendengar selamatkan Larasati FM" -> seruan [if: dukungan>=3]
+  - "Siaran perpisahan yang baik-baik" -> end_perpisahan
+
+label: seruan
+Bagas[tegang]: "Mereka mau mematikan frekuensi ini. Tapi frekuensi ini bukan milik mereka — ini milik kita. Yang begadang, yang di jalan, yang di koridor rumah sakit."
+*Saya membuka semua line telepon.*
+Bagas: "Kalau kalian mau Lentera Malam tetap ada... telepon. Datang. Sekarang."
+sfx: telpon
+*LINE 1. LINE 2. LINE 3. Semua menyala bersamaan.*
+jump: end_menyala
+
+label: end_menyala
+bg: fajar.png
+style: normal
+bgm: fajar_pad
+*Jam tiga pagi. Pintu studio diketuk — bukan, digedor.*
+*Pak Darmono. Di belakangnya: lima becak, pengemudinya masih pakai jaket hujan.* [if: darmono>=1]
+*Sinta masuk sambil menenteng kardus. "Donasi," katanya. "Dari grup alumni. Jangan tanya berapa."* [if: sinta=1]
+*Nadia datang dengan tiga perawat lain, masih berseragam. "Giliran kami begadang," katanya.* [if: nadia=2]
+*Dan telepon dari Haji Ridwan, toko material: "Saya tanggung operasional setahun, Le. Bapakmu dulu yang pasang antena rumah saya."*
+*Yoga berdiri di ambang pintu, map cokelat di tangan. Dia menatap kerumunan itu lama.*
+Yoga: "Saya... akan bicara dengan Bapak."
+*Fajar mulai naik di balik menara. Lampu merah puncaknya... menyala lagi.*
+Bagas[senang]: "Selamat pagi, Kota Arum. Ini Lentera Malam. Dan kita... masih di sini."
+ending: lentera_menyala "Lentera Tetap Menyala"
+
+label: end_perpisahan
+bg: fajar.png
+style: normal
+bgm: fajar_pad
+Bagas[sedih]: "Saya tidak akan meminta kalian berjuang. Delapan tahun cukup untuk tahu kapan harus melepas."
+*Satu lagu terakhir. Keroncong — untuk Pak Darmono, di koridor rumah sakit.* [if: darmono>=1]
+*Satu lagu terakhir. Untuk perawat yang berani.* [if: nadia=2]
+*Satu lagu terakhir. Untuk teman lama yang kembali tepat waktu.* [if: sinta=1]
+Bagas[sedih]: "Terima kasih sudah begadang bersama saya. Jaga kota ini baik-baik."
+*Saya mematikan mixer. Slider kreseknya berbunyi untuk terakhir kali — seperti pamit.*
+*Di luar, fajar naik. Pisang goreng Bu Tin menunggu.* [if: darmono=2]
+ending: siaran_perpisahan "Siaran Perpisahan"
+
+label: final_tanda
+bg: studio_malam.png
+style: normal
+bgm: studio_pad
+*Suratnya sudah saya tanda tangani. Tidak ada lagi yang perlu diperjuangkan — tinggal diakhiri dengan baik.*
+Bagas[sedih]: "Pendengar, malam ini Lentera Malam pamit. Bukan karena kita kalah. Kadang sesuatu selesai karena memang sudah selesai."
+*Pak Darmono menelepon sekali lagi, sebelum saya tutup. "Le... terima kasih ya. Delapan tahun."* [if: darmono>=1]
+*Nadia mengirim pesan: "Pasiennya stabil, Mas. Saya tidak akan lupa malam ini."* [if: nadia=2]
+*Sinta masih di depan studio, menunggu di mobilnya. Katanya mau mengantar saya pulang.* [if: sinta=1]
+Bagas: "Saya Bagas Pramudya. Delapan tahun di 107.8. Terima kasih."
+*Saya berdiri, mematikan lampu ON AIR dengan tangan sendiri. Merah padam.*
+*Di meja, saya tinggalkan satu benda: obeng bapak. Biar studio ini ingat siapa yang membangunnya.*
+ending: tanda_tangan "Tanda Tangan"

@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+}
+
+configurations { natives }
+
+android {
+    namespace 'com.hozinking.visualnovel'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.hozinking.visualnovel"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release { minifyEnabled false }
+        debug { minifyEnabled false }
+    }
+
+    sourceSets {
+        main { jniLibs.srcDirs = ['libs'] }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'com.badlogicgames.gdx:gdx:1.12.1'
+    implementation 'com.badlogicgames.gdx:gdx-backend-android:1.12.1'
+    implementation 'com.badlogicgames.gdx:gdx-freetype:1.12.1'
+    natives 'com.badlogicgames.gdx:gdx-platform:1.12.1:natives-armeabi-v7a'
+    natives 'com.badlogicgames.gdx:gdx-platform:1.12.1:natives-arm64-v8a'
+    natives 'com.badlogicgames.gdx:gdx-platform:1.12.1:natives-x86_64'
+    natives 'com.badlogicgames.gdx:gdx-freetype-platform:1.12.1:natives-armeabi-v7a'
+    natives 'com.badlogicgames.gdx:gdx-freetype-platform:1.12.1:natives-arm64-v8a'
+    natives 'com.badlogicgames.gdx:gdx-freetype-platform:1.12.1:natives-x86_64'
+}
+
+// Pola resmi libGDX: ekstrak .so dari gdx-platform & gdx-freetype-platform ke libs/<abi>/
+task copyAndroidNatives {
+    doFirst {
+        file("libs/armeabi-v7a/").mkdirs()
+        file("libs/arm64-v8a/").mkdirs()
+        file("libs/x86_64/").mkdirs()
+        configurations.natives.files.each { jar ->
+            def outputDir = null
+            if (jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("libs/armeabi-v7a/")
+            if (jar.name.endsWith("natives-arm64-v8a.jar")) outputDir = file("libs/arm64-v8a/")
+            if (jar.name.endsWith("natives-x86_64.jar")) outputDir = file("libs/x86_64/")
+            if (outputDir != null) {
+                copy {
+                    from zipTree(jar)
+                    into outputDir
+                    include "*.so"
+                }
+            }
+        }
+    }
+}
+tasks.whenTaskAdded { t ->
+    if (t.name.contains("package")) {
+        t.dependsOn 'copyAndroidNatives'
+    }
+}
+preBuild.dependsOn copyAndroidNatives
