@@ -89,8 +89,24 @@ public class StoryScreen implements Screen, InputProcessor {
         camera = new OrthographicCamera();
         viewport = new StretchViewport(W, H, camera);
         viewport.apply();
+        centerCamera();
+        if (batch != null) batch.dispose();
+        if (shapes != null) shapes.dispose();
         batch = new SpriteBatch();
         shapes = new ShapeRenderer();
+        ensureScript();
+        Gdx.input.setInputProcessor(this);
+        Gdx.input.setCatchKey(Input.Keys.BACK, true);
+    }
+
+    /** Tengahkankan kamera ke dunia 1280x720 (StretchViewport tidak melakukannya sendiri). */
+    private void centerCamera() {
+        camera.position.set(W / 2f, H / 2f, 0f);
+        camera.update();
+    }
+
+    /** Muat naskah sekali saja; aman dipanggil sebelum show() (mis. dari tombol Mulai). */
+    private void ensureScript() {
         if (script == null) {
             try {
                 String src = Gdx.files.internal("cerita.vn").readString("UTF-8");
@@ -99,12 +115,11 @@ public class StoryScreen implements Screen, InputProcessor {
                 script = new Script();
             }
         }
-        Gdx.input.setInputProcessor(this);
-        Gdx.input.setCatchKey(Input.Keys.BACK, true);
     }
 
     /** Mulai dari awal (ending yang terbuka tetap tersimpan). */
     public void startNew() {
+        ensureScript();
         flags.clear();
         game.save.clearSave();
         showEnding = false;
@@ -114,6 +129,7 @@ public class StoryScreen implements Screen, InputProcessor {
 
     /** Lanjutkan dari auto-save. */
     public void startFromSave() {
+        ensureScript();
         flags.clear();
         flags.putAll(game.save.loadFlags());
         showEnding = false;
@@ -554,6 +570,7 @@ public class StoryScreen implements Screen, InputProcessor {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
+        centerCamera();
     }
 
     @Override public void pause() { }

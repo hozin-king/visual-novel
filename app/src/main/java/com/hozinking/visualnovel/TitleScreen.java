@@ -41,6 +41,12 @@ public class TitleScreen implements Screen, InputProcessor {
         camera = new OrthographicCamera();
         viewport = new StretchViewport(W, H, camera);
         viewport.apply();
+        // StretchViewport tidak menengahkan kamera sendiri: wajib manual,
+        // kalau tidak seluruh layar bergeser (separuh kiri hitam).
+        camera.position.set(W / 2f, H / 2f, 0f);
+        camera.update();
+        if (batch != null) batch.dispose();
+        if (shapes != null) shapes.dispose();
         batch = new SpriteBatch();
         shapes = new ShapeRenderer();
         if (bg == null) {
@@ -162,7 +168,11 @@ public class TitleScreen implements Screen, InputProcessor {
     @Override public boolean scrolled(float a, float b) { return false; }
     @Override public boolean touchCancelled(int sx, int sy, int p, int b) { return false; }
 
-    @Override public void resize(int w, int h) { viewport.update(w, h); }
+    @Override public void resize(int w, int h) {
+        viewport.update(w, h);
+        camera.position.set(W / 2f, H / 2f, 0f);
+        camera.update();
+    }
     @Override public void pause() { }
     @Override public void resume() { }
     @Override public void hide() { }
